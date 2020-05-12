@@ -8,9 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>$Title$</title>
+    <title>DailyService</title>
   </head>
   <body>
-  $END$
+  <h2>Welcome to DailyService!</h2>
+  <h3>We are daily grocery delivery service.</h3>
   </body>
 </html>
