@@ -1,2 +1,2 @@
 # DailyService
-A RESTful grocery delivery backend service using Java EE framework.
+A RESTful backend service for grocery delivery using Java EE framework.
