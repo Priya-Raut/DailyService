@@ -2,6 +2,9 @@ package com.dailyservice.storage;
 
 import java.sql.*;
 
+/**
+ * DatabaseConnectionManager class to connect with database and test the connection.
+ */
 public class DatabaseConnectionManager {
     private static final String DRIVER_NAME = "com.mysql.jdbc.Driver";
     private static final String DATABASE_URL = "jdbc:mysql://localhost:3306";

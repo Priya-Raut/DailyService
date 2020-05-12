@@ -2,6 +2,9 @@ package com.dailyservice.dto;
 
 import java.math.BigInteger;
 
+/**
+ * A Data Transfer Object for an item being delivered by the DailyService.
+ */
 public class ItemDto {
     private BigInteger itemId;
     private String itemName;

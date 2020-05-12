@@ -4,6 +4,9 @@ import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.Map;
 
+/**
+ * A Data Transfer Object for a delivery order of items by a customer.
+ */
 public class DeliveryOrderDto {
     private BigInteger orderId;
     private double billAmount;
