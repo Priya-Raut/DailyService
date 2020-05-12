@@ -29,10 +29,10 @@ public class DatabaseConnectionManager {
     /**
      * Test database connection by running a select query.
      */
-    public void testConnection(){
+    public static void testConnection(Connection connection){
         Statement statement = null;
         try {
-            statement = DatabaseConnectionManager.getConnection().createStatement();
+            statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(TEST_QUERY);
             while(resultSet.next()){
                 System.out.println("Item Name: " + resultSet.getString(1) + " Item Price: " + resultSet.getDouble(2));
