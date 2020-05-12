@@ -11,6 +11,7 @@ public class DeliveryOrderDto {
     private BigInteger orderId;
     private double billAmount;
     private LocalDateTime orderDateTime;
+    //TODO Use a unique key for the map, e.g itemId by overriding hashCode(), maintaining contract with equals
     private Map<ItemDto, Integer> itemsQuantityMap;
 
     public BigInteger getOrderId() {
