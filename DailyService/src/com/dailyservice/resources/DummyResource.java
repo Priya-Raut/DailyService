@@ -4,8 +4,13 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
-// The Java class will be hosted at the URI path "/test"
-@Path("/test")
+/**
+ * A dummy resource to test the successfull connection by the client.
+ *
+ * @author Priya Raut
+ * @version 1.0
+ */
+@Path("/test")//The Java class will be hosted at the URI path "/test"
 public class DummyResource {
 
     @GET // The Java method will process HTTP GET requests

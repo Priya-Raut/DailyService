@@ -4,6 +4,9 @@ import java.sql.*;
 
 /**
  * DatabaseConnectionManager class to connect with database and test the connection.
+ *
+ * @author Priya Raut
+ * @version 1.0
  */
 public class DatabaseConnectionManager {
     private static final String DRIVER_NAME = "com.mysql.jdbc.Driver";

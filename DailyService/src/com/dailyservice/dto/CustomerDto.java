@@ -4,6 +4,9 @@ import java.math.BigInteger;
 
 /**
  * A Data Transfer Object for a DailyService customer.
+ *
+ * @author Priya Raut
+ * @version 1.0
  */
 public class CustomerDto {
     private BigInteger customerId;
