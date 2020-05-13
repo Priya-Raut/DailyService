@@ -9,8 +9,8 @@ import java.sql.*;
  * @version 1.0
  */
 public class DatabaseConnectionManager {
-    private static final String DRIVER_NAME = "com.mysql.jdbc.Driver";
-    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306";
+    private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
+    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/dailyservice";
     private static final String USER = "root";
     private static final String PASSWORD = "MySQL215";
     private static final String TEST_QUERY = "Select * from Item";
@@ -21,14 +21,15 @@ public class DatabaseConnectionManager {
      * @return Connection object if database connection is established, null otherwise.
      */
     public static Connection getConnection(){
+        System.out.println("Connecting to database..");
         Connection connection = null;
         try{
             Class.forName(DRIVER_NAME);
             connection = DriverManager.getConnection(DATABASE_URL, USER, PASSWORD);
-            return connection;
         }catch (SQLException | ClassNotFoundException throwable){
             throwable.printStackTrace();
         }
+        System.out.println("Database connection is successful!");
         return connection;
     }
 
@@ -36,15 +37,18 @@ public class DatabaseConnectionManager {
      * Test database connection by running a select query.
      */
     public static void testConnection(Connection connection){
+        System.out.println("Executing a test query on database..");
         Statement statement = null;
         try {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(TEST_QUERY);
             while(resultSet.next()){
-                System.out.println("Item Name: " + resultSet.getString(1) + " Item Price: " + resultSet.getDouble(2));
+                System.out.print("Item Name: " + resultSet.getString(2) + " Item Price: " + resultSet.getDouble(3));
+                System.out.println();
             }
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }
+        System.out.println("Test query execution is successful!");
     }
 }
