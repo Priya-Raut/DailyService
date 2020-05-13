@@ -1,21 +1,16 @@
 package com.dailyservice.resources;
 
 import com.dailyservice.dto.ItemDto;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.reflect.TypeToken;
+import com.dailyservice.storage.DatabaseConnectionManager;
+import com.dailyservice.wrappers.ItemWrapper;
 
 import javax.ejb.Stateless;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
-import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -30,26 +25,17 @@ public class DeliveryOrderResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/create-order")
-    public Response createOrder(@QueryParam("customerId") BigInteger customerId, ArrayList<ItemDto> items) {
+    public Response createOrder(@QueryParam("customerId") BigInteger customerId, ItemWrapper itemWrapper) {
         System.out.println("createOrder end point is called..");
         System.out.println("custmerId: " + customerId);
-        for(ItemDto item : items) {
+        Connection connection = DatabaseConnectionManager.getConnection();
+        for(ItemDto item : itemWrapper.getItems()) {
             System.out.println("item from the request: " + item);
-        }
-        System.out.println("items from the request: " + items);
-        //TODO Deserialize ArrayList<ItemDto> items from json into java object
-//        Gson gson = new Gson();
-//        Type itemListType = new TypeToken<ArrayList<ItemDto>>(){}.getType();
-//        ArrayList<ItemDto> itemArray = gson.fromJson(, itemListType);
-
-//        Connection connection = DatabaseConnectionManager.getConnection();
-//        for(ItemDto item : itemArray) {
-//            System.out.println("item: " + item);/
 //            if(connection != null) {
-//               BigDecimal retrievedItemId = getItemIdFromItemName(connection);
-                 // TODO Send the list to getbillAmount() method, calculate billAmount
+//               BigDecimal retrievedItemId = getItemIdFromItemName(connection, item.getItemName());
 //            }
-//        }
+        }
+        // TODO Send the list to getbillAmount() method, calculate billAmount
 
         //return billAmount
         // TODO its a summation of billAmounts of all entries with same customerId and same datetime
