@@ -1,5 +1,6 @@
-package com.dailyservice.controller;
+package com.dailyservice;
 
+import com.dailyservice.resources.DeliveryOrderResource;
 import com.dailyservice.resources.DummyResource;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
