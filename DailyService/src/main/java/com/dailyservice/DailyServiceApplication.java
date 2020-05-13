@@ -16,11 +16,4 @@ import java.util.Set;
 @ApplicationPath("/") //Defines the base URI for all resource URIs.
 public class DailyServiceApplication extends Application{
 
-    //The method returns a non-empty collection with classes, that must be included in the published JAX-RS application
-    @Override
-    public Set<Class<?>> getClasses() {
-        HashSet hashSet = new HashSet<Class<?>>();
-        hashSet.add( DummyResource.class );
-        return hashSet;
-    }
 }
