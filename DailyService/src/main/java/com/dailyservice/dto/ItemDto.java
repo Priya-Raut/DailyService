@@ -1,5 +1,7 @@
 package com.dailyservice.dto;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Objects;
 
@@ -9,7 +11,8 @@ import java.util.Objects;
  * @author Priya Raut
  * @version 1.0
  */
-public class ItemDto {
+@XmlRootElement
+public class ItemDto implements Serializable {
     private BigInteger itemId;
     private String itemName;
     private double itemPrice;
