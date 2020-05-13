@@ -1,11 +1,14 @@
 package com.dailyservice.resources;
 
+import com.dailyservice.storage.DatabaseConnectionManager;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import java.sql.Connection;
 
 /**
- * A dummy resource to test the successfull connection by the client.
+ * A dummy resource to test the successful connection by the client.
  *
  * @author Priya Raut
  * @version 1.0

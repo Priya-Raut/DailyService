@@ -12,6 +12,7 @@ public class ItemDto {
     private BigInteger itemId;
     private String itemName;
     private double itemPrice;
+    private double itemQuantity;
 
     public BigInteger getItemId() {
         return itemId;

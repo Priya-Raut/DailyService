@@ -6,6 +6,9 @@ import java.util.Map;
 
 /**
  * A Data Transfer Object for a delivery order of items by a customer.
+ *
+ *  @author Priya Raut
+ *  @version 1.0
  */
 public class DeliveryOrderDto {
     private BigInteger orderId;

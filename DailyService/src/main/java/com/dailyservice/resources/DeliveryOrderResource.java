@@ -1,5 +1,7 @@
 package com.dailyservice.resources;
 
+import com.dailyservice.dto.ItemDto;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -17,8 +19,9 @@ public class DeliveryOrderResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/create-order")
-    public Response createOrder(@QueryParam("customerId")BigInteger customerId, @QueryParam("items") ) {
-        //Call Database connection
-        Response.status(Response.Status.OK).entity().build();
+    public Response createOrder(@QueryParam("customerId")BigInteger customerId) {
+        //Call database and
+        //Response.status(Response.Status.OK).entity().build();
+        return Response.status(Response.Status.OK).build();
     }
 }
