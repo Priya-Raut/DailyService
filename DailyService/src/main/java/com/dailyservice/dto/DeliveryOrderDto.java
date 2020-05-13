@@ -13,6 +13,8 @@ import java.util.Objects;
  */
 public class DeliveryOrderDto {
     private BigInteger orderId;
+    private BigInteger customerId;
+    private BigInteger itemId;
     private double billAmount;
     private LocalDateTime orderDateTime;
     private List<ItemDto> items;
@@ -25,6 +27,22 @@ public class DeliveryOrderDto {
         this.orderId = orderId;
     }
 
+    public BigInteger getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(BigInteger customerId) {
+        this.customerId = customerId;
+    }
+
+    public BigInteger getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(BigInteger itemId) {
+        this.itemId = itemId;
+    }
+
     public double getBillAmount(List<ItemDto> items) {
         for( ItemDto item : items){
             billAmount += item.getItemPrice() * item.getItemQuantity();
@@ -33,11 +51,8 @@ public class DeliveryOrderDto {
     }
 
     public LocalDateTime getOrderDateTime() {
+        orderDateTime = LocalDateTime.now();
         return orderDateTime;
-    }
-
-    public void setOrderDateTime(LocalDateTime orderDateTime) {
-        this.orderDateTime = orderDateTime;
     }
 
     public double getBillAmount() {
@@ -60,8 +75,11 @@ public class DeliveryOrderDto {
     public String toString() {
         return "DeliveryOrderDto{" +
                 "orderId=" + orderId +
+                ", customerId=" + customerId +
+                ", itemId=" + itemId +
                 ", billAmount=" + billAmount +
                 ", orderDateTime=" + orderDateTime +
+                ", items=" + items +
                 '}';
     }
 
@@ -72,11 +90,14 @@ public class DeliveryOrderDto {
         DeliveryOrderDto that = (DeliveryOrderDto) o;
         return Double.compare(that.billAmount, billAmount) == 0 &&
                 orderId.equals(that.orderId) &&
-                orderDateTime.equals(that.orderDateTime);
+                customerId.equals(that.customerId) &&
+                itemId.equals(that.itemId) &&
+                orderDateTime.equals(that.orderDateTime) &&
+                items.equals(that.items);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(orderId, billAmount, orderDateTime);
+        return Objects.hash(orderId, customerId, itemId, billAmount, orderDateTime, items);
     }
 }
