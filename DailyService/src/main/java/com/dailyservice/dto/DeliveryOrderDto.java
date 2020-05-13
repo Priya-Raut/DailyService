@@ -2,7 +2,8 @@ package com.dailyservice.dto;
 
 import java.math.BigInteger;
 import java.time.LocalDateTime;
-import java.util.Map;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * A Data Transfer Object for a delivery order of items by a customer.
@@ -14,8 +15,7 @@ public class DeliveryOrderDto {
     private BigInteger orderId;
     private double billAmount;
     private LocalDateTime orderDateTime;
-    //TODO Use a unique key for the map, e.g itemId by overriding hashCode(), maintaining contract with equals
-    private Map<ItemDto, Integer> itemsQuantityMap;
+    private List<ItemDto> items;
 
     public BigInteger getOrderId() {
         return orderId;
@@ -25,9 +25,9 @@ public class DeliveryOrderDto {
         this.orderId = orderId;
     }
 
-    public double getBillAmount(Map<ItemDto, Integer> itemsQuantityMap) {
-        for( ItemDto itemDto : itemsQuantityMap.keySet()){
-            billAmount += itemDto.getItemPrice() * itemsQuantityMap.get(itemDto);
+    public double getBillAmount(List<ItemDto> items) {
+        for( ItemDto item : items){
+            billAmount += item.getItemPrice() * item.getItemQuantity();
         }
         return billAmount;
     }
@@ -40,11 +40,43 @@ public class DeliveryOrderDto {
         this.orderDateTime = orderDateTime;
     }
 
-    public Map<ItemDto, Integer> getItemsQuantityMap() {
-        return itemsQuantityMap;
+    public double getBillAmount() {
+        return billAmount;
     }
 
-    public void setItemsQuantityMap(Map<ItemDto, Integer> itemsQuantityMap) {
-        this.itemsQuantityMap = itemsQuantityMap;
+    public void setBillAmount(double billAmount) {
+        this.billAmount = billAmount;
+    }
+
+    public List<ItemDto> getItems() {
+        return items;
+    }
+
+    public void setItems(List<ItemDto> items) {
+        this.items = items;
+    }
+
+    @Override
+    public String toString() {
+        return "DeliveryOrderDto{" +
+                "orderId=" + orderId +
+                ", billAmount=" + billAmount +
+                ", orderDateTime=" + orderDateTime +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DeliveryOrderDto that = (DeliveryOrderDto) o;
+        return Double.compare(that.billAmount, billAmount) == 0 &&
+                orderId.equals(that.orderId) &&
+                orderDateTime.equals(that.orderDateTime);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(orderId, billAmount, orderDateTime);
     }
 }

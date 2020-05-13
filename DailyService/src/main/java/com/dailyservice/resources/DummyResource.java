@@ -2,6 +2,7 @@ package com.dailyservice.resources;
 
 import com.dailyservice.storage.DatabaseConnectionManager;
 
+import javax.ejb.Stateless;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -13,6 +14,7 @@ import java.sql.Connection;
  * @author Priya Raut
  * @version 1.0
  */
+@Stateless
 @Path("/test")//The Java class will be hosted at the URI path "/test"
 public class DummyResource {
 

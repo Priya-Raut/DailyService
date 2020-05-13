@@ -1,6 +1,7 @@
 package com.dailyservice.dto;
 
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * A Data Transfer Object for a DailyService customer.
@@ -104,5 +105,26 @@ public class CustomerDto {
                 ", city='" + city + '\'' +
                 ", pinCode=" + pinCode +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CustomerDto that = (CustomerDto) o;
+        return apartmentNumber == that.apartmentNumber &&
+                pinCode == that.pinCode &&
+                customerId.equals(that.customerId) &&
+                firstName.equals(that.firstName) &&
+                lastName.equals(that.lastName) &&
+                phoneNumber.equals(that.phoneNumber) &&
+                Objects.equals(area, that.area) &&
+                Objects.equals(optionalAddress, that.optionalAddress) &&
+                Objects.equals(city, that.city);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(customerId, firstName, lastName, phoneNumber, apartmentNumber, area, optionalAddress, city, pinCode);
     }
 }

@@ -2,6 +2,7 @@ package com.dailyservice.resources;
 
 import com.dailyservice.dto.ItemDto;
 
+import javax.ejb.Stateless;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -12,6 +13,7 @@ import java.math.BigInteger;
  * @author Priya Raut
  * @version 1.0
  */
+@Stateless
 @Path("/delivery-order")
 public class DeliveryOrderResource {
 
