@@ -1,6 +1,7 @@
 package com.dailyservice.dto;
 
 import java.math.BigInteger;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -16,7 +17,7 @@ public class DeliveryOrderDto {
     private BigInteger customerId;
     private BigInteger itemId;
     private double billAmount;
-    private LocalDateTime orderDateTime;
+    private Timestamp orderDateTime;
     private List<ItemDto> items;
 
     public BigInteger getOrderId() {
@@ -43,16 +44,18 @@ public class DeliveryOrderDto {
         this.itemId = itemId;
     }
 
-    public double getBillAmount(List<ItemDto> items) {
-        for( ItemDto item : items){
-            billAmount += item.getItemPrice() * item.getItemQuantity();
-        }
+    public double getBillAmount(ItemDto item) {
+        billAmount = item.getItemPrice() * item.getItemQuantity();
         return billAmount;
     }
 
-    public LocalDateTime getOrderDateTime() {
-        orderDateTime = LocalDateTime.now();
+    public Timestamp getOrderDateTime() {
+        orderDateTime = new Timestamp(System.currentTimeMillis());
         return orderDateTime;
+    }
+
+    public void setOrderDateTime(Timestamp orderDateTime) {
+        this.orderDateTime = orderDateTime;
     }
 
     public double getBillAmount() {

@@ -10,7 +10,7 @@ import java.sql.*;
  */
 public class DatabaseConnectionManager {
     private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
-    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/dailyservice";
+    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/dailyservice?useSSL=false";
     private static final String USER = "root";
     private static final String PASSWORD = "MySQL215";
     private static final String TEST_QUERY = "Select * from Item";
