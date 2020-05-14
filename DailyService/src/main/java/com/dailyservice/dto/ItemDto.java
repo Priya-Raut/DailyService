@@ -52,12 +52,12 @@ public class ItemDto implements Serializable {
 
     @Override
     public String toString() {
-        return "ItemDto{" +
-                "itemId=" + itemId +
-                ", itemName='" + itemName + '\'' +
-                ", itemPrice=" + itemPrice +
-                ", itemQuantity=" + itemQuantity +
-                '}';
+        return "{" +
+                "itemId: " + itemId +
+                ", itemName: " + itemName +
+                ", itemPrice: " +  itemPrice +
+                ", itemQuantity: " + itemQuantity +
+               '}';
     }
 
     @Override
