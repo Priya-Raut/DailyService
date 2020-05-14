@@ -25,9 +25,7 @@ public class DeliveryOrderDao {
      */
     public void insertIntoDeliveryOrder(Connection connection, DeliveryOrderDto deliveryOrderDto){
         System.out.println("insertIntoDeliveryOrder started..");
-        PreparedStatement statement = null;
-        try {
-            statement = connection.prepareStatement(INSERT_QUERY);
+        try(PreparedStatement statement = connection.prepareStatement(INSERT_QUERY)) {
             statement.setBigDecimal(1, new BigDecimal(deliveryOrderDto.getCustomerId()));
             statement.setString(2, deliveryOrderDto.getItems().toString());
             statement.setDouble(3, deliveryOrderDto.getBillAmount());

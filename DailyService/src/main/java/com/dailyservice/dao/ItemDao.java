@@ -25,10 +25,8 @@ public class ItemDao {
      */
     public BigInteger getItemIdFromItemName(Connection connection, String itemName){
         System.out.println("getItemIdFromItemName started..");
-        PreparedStatement statement = null;
         BigInteger retrievedItemId = BigInteger.valueOf(0);
-        try {
-            statement = connection.prepareStatement(SELECT_ITEMID_FROM_ITEMNAME);
+        try(PreparedStatement statement = connection.prepareStatement(SELECT_ITEMID_FROM_ITEMNAME)) {
             statement.setString(1, itemName);
             ResultSet resultSet = statement.executeQuery();
             if(resultSet.next()){
