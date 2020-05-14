@@ -45,7 +45,8 @@ public class DeliveryOrderResource {
 
         double billAmount = deliveryOrderDto.getBillAmount();
         System.out.println("Bill amount for the order is retrieved successfully!");
-        return Response.status(Response.Status.OK).entity(billAmount).build();
+        if(billAmount != 0.0 ) return Response.status(Response.Status.OK).entity(billAmount).build();
+        else return Response.noContent().build();
     }
 
     /**
