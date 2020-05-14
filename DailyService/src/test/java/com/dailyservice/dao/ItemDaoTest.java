@@ -49,7 +49,7 @@ public class ItemDaoTest {
         ItemDao dao = new ItemDao();
         String itemName = "Sugar";
         BigInteger itemId = dao.getItemIdFromItemName(connection, itemName);
-        Assert.assertTrue(itemId == BigInteger.valueOf(0));
+        Assert.assertFalse("An itemId exists in Item table for given item name. It should not!",itemId != BigInteger.valueOf(0));
     }
 
     /**
