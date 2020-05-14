@@ -3,14 +3,15 @@ package com.dailyservice.storage;
 import java.sql.*;
 
 /**
- * This class provides methods to connect with DeliveryService database and test the connection.
+ * This class provides methods to connect with database and test the connection.
  *
  * @author Priya Raut
  * @version 1.0
  */
 public class DatabaseConnectionManager {
     private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
-    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/dailyservice?useSSL=false";
+    private static final String DATABASE_NAME = "dailyservice";
+    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/" + DATABASE_NAME + "?useSSL=false";
     private static final String USER = "root";
     private static final String PASSWORD = "MySQL215";
     private static final String TEST_QUERY = "Select * from Item";
