@@ -19,6 +19,6 @@ public class DatabaseConnectionTest {
     @Test
     public void shouldConnectToDatabase(){
         Connection connection = DatabaseConnectionManager.getConnection();
-        Assert.assertTrue("Connection to the database could not be established.", connection != null);
+        Assert.assertNotNull("Connection to the database could not be established.", connection);
     }
 }
