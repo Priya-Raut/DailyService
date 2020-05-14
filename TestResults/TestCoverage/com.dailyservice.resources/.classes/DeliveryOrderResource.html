@@ -1,0 +1,164 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: DeliveryOrderResource</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.dailyservice.resources</a> ]
+</div>
+
+<h1>Coverage Summary for Class: DeliveryOrderResource (com.dailyservice.resources)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">DeliveryOrderResource</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 27)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.dailyservice.resources;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.dailyservice.dao.DeliveryOrderDao;
+<i>4</i>&nbsp;import com.dailyservice.dao.ItemDao;
+<i>5</i>&nbsp;import com.dailyservice.dto.DeliveryOrderDto;
+<i>6</i>&nbsp;import com.dailyservice.dto.ItemDto;
+<i>7</i>&nbsp;import com.dailyservice.storage.DatabaseConnectionManager;
+<i>8</i>&nbsp;import com.dailyservice.wrappers.ItemWrapper;
+<i>9</i>&nbsp;import javax.ejb.Stateless;
+<i>10</i>&nbsp;import javax.ws.rs.*;
+<i>11</i>&nbsp;import javax.ws.rs.core.MediaType;
+<i>12</i>&nbsp;import javax.ws.rs.core.Response;
+<i>13</i>&nbsp;import java.math.BigInteger;
+<i>14</i>&nbsp;import java.sql.*;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;/**
+<i>17</i>&nbsp; * A resource for delivery order of items placed by a customer.
+<i>18</i>&nbsp; *
+<i>19</i>&nbsp; * @author Priya Raut
+<i>20</i>&nbsp; * @version 1.0
+<i>21</i>&nbsp; */
+<i>22</i>&nbsp;@Stateless
+<i>23</i>&nbsp;@Path(&quot;/delivery-order&quot;)
+<b class="nc"><i>24</i>&nbsp;public class DeliveryOrderResource {</b>
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;    /**
+<i>27</i>&nbsp;     * Create a delivery order based on given request parameters.
+<i>28</i>&nbsp;     *
+<i>29</i>&nbsp;     * @param customerId id of the customer who placed the order for delivery.
+<i>30</i>&nbsp;     * @param itemWrapper wrapper for the items to be purchased by the customer.
+<i>31</i>&nbsp;     * @return billAmount and status code.
+<i>32</i>&nbsp;     */
+<i>33</i>&nbsp;    @POST
+<i>34</i>&nbsp;    @Produces(MediaType.APPLICATION_JSON)
+<i>35</i>&nbsp;    @Consumes(MediaType.APPLICATION_JSON)
+<i>36</i>&nbsp;    @Path(&quot;/create-order&quot;)
+<i>37</i>&nbsp;    public Response createOrder(@QueryParam(&quot;customerId&quot;) BigInteger customerId, ItemWrapper itemWrapper) {
+<b class="nc"><i>38</i>&nbsp;        System.out.println(&quot;createOrder end point is called..&quot;);</b>
+<b class="nc"><i>39</i>&nbsp;        Connection connection = DatabaseConnectionManager.getConnection();</b>
+<b class="nc"><i>40</i>&nbsp;        DeliveryOrderDto deliveryOrderDto = createDeliveryOrderDto(connection, customerId, itemWrapper);</b>
+<b class="nc"><i>41</i>&nbsp;        System.out.println(&quot;deliveryOrderDto successful creation: &quot; + deliveryOrderDto);</b>
+<i>42</i>&nbsp;
+<b class="nc"><i>43</i>&nbsp;        DeliveryOrderDao deliveryOrderDao = new DeliveryOrderDao();</b>
+<b class="nc"><i>44</i>&nbsp;        deliveryOrderDao.insertIntoDeliveryOrder(connection, deliveryOrderDto);</b>
+<i>45</i>&nbsp;
+<b class="nc"><i>46</i>&nbsp;        double billAmount = deliveryOrderDto.getBillAmount();</b>
+<b class="nc"><i>47</i>&nbsp;        System.out.println(&quot;Bill amount for the order is retrieved successfully!&quot;);</b>
+<b class="nc"><i>48</i>&nbsp;        return Response.status(Response.Status.OK).entity(billAmount).build();</b>
+<i>49</i>&nbsp;    }
+<i>50</i>&nbsp;
+<i>51</i>&nbsp;    /**
+<i>52</i>&nbsp;     * Create instance of DeliveryOrderDto.
+<i>53</i>&nbsp;     *
+<i>54</i>&nbsp;     * @param connection Database connection object
+<i>55</i>&nbsp;     * @param customerId id of the customer placing an order
+<i>56</i>&nbsp;     * @param itemWrapper wrapper for items
+<i>57</i>&nbsp;     * @return instance of DeliveryOrderDto
+<i>58</i>&nbsp;     */
+<i>59</i>&nbsp;    public DeliveryOrderDto createDeliveryOrderDto(Connection connection, BigInteger customerId, ItemWrapper itemWrapper){
+<b class="nc"><i>60</i>&nbsp;        System.out.println(&quot;Start creating delivery order..&quot;);</b>
+<b class="nc"><i>61</i>&nbsp;        ItemDao itemDao = new ItemDao();</b>
+<b class="nc"><i>62</i>&nbsp;        DeliveryOrderDto deliveryOrderDto = new DeliveryOrderDto();</b>
+<b class="nc"><i>63</i>&nbsp;        deliveryOrderDto.setCustomerId(customerId); //customerId</b>
+<b class="nc"><i>64</i>&nbsp;        BigInteger retrievedItemId = BigInteger.valueOf(0);</b>
+<b class="nc"><i>65</i>&nbsp;        for(ItemDto item : itemWrapper.getItems()) {</b>
+<b class="nc"><i>66</i>&nbsp;            System.out.println(&quot;item from the request: &quot; + item);</b>
+<b class="nc"><i>67</i>&nbsp;            if(connection != null) {</b>
+<i>68</i>&nbsp;                //set item id of each item from Item table
+<b class="nc"><i>69</i>&nbsp;                retrievedItemId = itemDao.getItemIdFromItemName(connection, item.getItemName());</b>
+<b class="nc"><i>70</i>&nbsp;                System.out.println(&quot;retrievedItemId: &quot; + retrievedItemId);</b>
+<i>71</i>&nbsp;            }
+<b class="nc"><i>72</i>&nbsp;            item.setItemId(retrievedItemId);</b>
+<b class="nc"><i>73</i>&nbsp;        }</b>
+<b class="nc"><i>74</i>&nbsp;        deliveryOrderDto.setItems(itemWrapper.getItems()); //items</b>
+<b class="nc"><i>75</i>&nbsp;        deliveryOrderDto.setBillAmount(deliveryOrderDto.getItems()); //billAmount</b>
+<b class="nc"><i>76</i>&nbsp;        deliveryOrderDto.setOrderDateTime(deliveryOrderDto.getOrderDateTime()); //orderDate</b>
+<b class="nc"><i>77</i>&nbsp;        System.out.println(&quot;Delivery order created successfully!&quot;);</b>
+<b class="nc"><i>78</i>&nbsp;        return deliveryOrderDto;</b>
+<i>79</i>&nbsp;    }
+<i>80</i>&nbsp;
+<i>81</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-14 18:01</div>
+</div>
+</body>
+</html>
