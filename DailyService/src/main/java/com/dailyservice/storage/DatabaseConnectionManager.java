@@ -35,6 +35,8 @@ public class DatabaseConnectionManager {
 
     /**
      * Test database connection by running a select query.
+     *
+     * @param connection instance of database Connection.
      */
     public static void testConnection(Connection connection){
         System.out.println("Executing a test query on database..");
