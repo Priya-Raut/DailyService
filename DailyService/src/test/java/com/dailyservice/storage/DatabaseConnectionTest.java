@@ -13,6 +13,9 @@ import java.sql.Connection;
  */
 public class DatabaseConnectionTest {
 
+    /**
+     * Test to confirm if database connection is established or not.
+     */
     @Test
     public void shouldConnectToDatabase(){
         Connection connection = DatabaseConnectionManager.getConnection();

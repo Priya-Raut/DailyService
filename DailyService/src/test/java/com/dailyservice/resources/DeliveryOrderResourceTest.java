@@ -10,8 +10,17 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
+/**
+ * This test class tests DeliveryOrderResource class.
+ *
+ * @author  Priya Raut
+ * @version 1.0
+ */
 public class DeliveryOrderResourceTest {
 
+    /**
+     * Test to confirm if billAmount is getting properly calculated or not.
+     */
     @Test
     public void shouldGetProperBillAmountForGivenItems() {
         List<ItemDto> items = new ArrayList<ItemDto>();
@@ -30,6 +39,6 @@ public class DeliveryOrderResourceTest {
         DeliveryOrderDto deliveryOrderDto = new DeliveryOrderDto();
         deliveryOrderDto.setBillAmount(items);
 
-        Assert.assertEquals(150, deliveryOrderDto.getBillAmount(), 0);
+        Assert.assertEquals("The billAmount is different than expected.", 150, deliveryOrderDto.getBillAmount(), 0);
     }
 }
