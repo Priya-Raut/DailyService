@@ -62,10 +62,6 @@ public class DeliveryOrderDto {
         return billAmount;
     }
 
-    public void setBillAmount(double billAmount) {
-        this.billAmount = billAmount;
-    }
-
     public List<ItemDto> getItems() {
         return items;
     }
