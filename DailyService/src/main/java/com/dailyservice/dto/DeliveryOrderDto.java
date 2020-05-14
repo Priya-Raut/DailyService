@@ -14,7 +14,6 @@ import java.util.Objects;
 public class DeliveryOrderDto {
     private BigInteger orderId;
     private BigInteger customerId;
-    private BigInteger itemId;
     private double billAmount;
     private Timestamp orderDateTime;
     private List<ItemDto> items;
@@ -33,14 +32,6 @@ public class DeliveryOrderDto {
 
     public void setCustomerId(BigInteger customerId) {
         this.customerId = customerId;
-    }
-
-    public BigInteger getItemId() {
-        return itemId;
-    }
-
-    public void setItemId(BigInteger itemId) {
-        this.itemId = itemId;
     }
 
     public void setBillAmount(List<ItemDto> items) {
@@ -75,7 +66,6 @@ public class DeliveryOrderDto {
         return "DeliveryOrderDto{" +
                 "orderId=" + orderId +
                 ", customerId=" + customerId +
-                ", itemId=" + itemId +
                 ", billAmount=" + billAmount +
                 ", orderDateTime=" + orderDateTime +
                 ", items=" + items +
@@ -90,13 +80,12 @@ public class DeliveryOrderDto {
         return Double.compare(that.billAmount, billAmount) == 0 &&
                 orderId.equals(that.orderId) &&
                 customerId.equals(that.customerId) &&
-                itemId.equals(that.itemId) &&
                 orderDateTime.equals(that.orderDateTime) &&
                 items.equals(that.items);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(orderId, customerId, itemId, billAmount, orderDateTime, items);
+        return Objects.hash(orderId, customerId, billAmount, orderDateTime, items);
     }
 }
