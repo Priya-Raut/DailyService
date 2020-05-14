@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * A Data Transfer Object for a delivery order of items by a customer.
+ * This class contains all the attributes of a delivery order of items by a customer.
  *
  *  @author Priya Raut
  *  @version 1.0

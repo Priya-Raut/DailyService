@@ -6,6 +6,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * This class contains all the queries on Item table.
+ *
+ * @author Priya Raut
+ * @version 1.0
+ */
 public class ItemDao {
 
     private static final String SELECT_ITEMID_FROM_ITEMNAME = "select ItemID from Item where ItemName=?";

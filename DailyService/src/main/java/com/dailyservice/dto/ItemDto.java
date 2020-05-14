@@ -6,7 +6,7 @@ import java.math.BigInteger;
 import java.util.Objects;
 
 /**
- * A Data Transfer Object for an item being delivered by the DailyService.
+ * This class contains all the attributes of an item being delivered by the DailyService.
  *
  * @author Priya Raut
  * @version 1.0

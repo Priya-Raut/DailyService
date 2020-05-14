@@ -7,6 +7,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+/**
+ * This class contains all the queries on DeliveryOrder table.
+ *
+ * @author Priya Raut
+ * @version 1.0
+ */
 public class DeliveryOrderDao {
 
     private static final String INSERT_QUERY = "INSERT INTO DeliveryOrder (CustomerID, Items, BillAmount, OrderDate) VALUES (?, ?, ?, ?)";
