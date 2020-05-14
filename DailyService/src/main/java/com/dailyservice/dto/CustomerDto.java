@@ -4,7 +4,7 @@ import java.math.BigInteger;
 import java.util.Objects;
 
 /**
- * A Data Transfer Object for a DailyService customer.
+ * This class contains all the attributes of a customer.
  *
  * @author Priya Raut
  * @version 1.0

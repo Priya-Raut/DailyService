@@ -3,7 +3,7 @@ package com.dailyservice.storage;
 import java.sql.*;
 
 /**
- * DatabaseConnectionManager class to connect with database and test the connection.
+ * This class provides methods to connect with DeliveryService database and test the connection.
  *
  * @author Priya Raut
  * @version 1.0
