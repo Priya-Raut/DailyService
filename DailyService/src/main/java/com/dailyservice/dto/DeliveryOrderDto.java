@@ -44,9 +44,10 @@ public class DeliveryOrderDto {
         this.itemId = itemId;
     }
 
-    public double getBillAmount(ItemDto item) {
-        billAmount = item.getItemPrice() * item.getItemQuantity();
-        return billAmount;
+    public void setBillAmount(List<ItemDto> items) {
+        for(ItemDto item : items){
+            billAmount += item.getItemPrice() * item.getItemQuantity();
+        }
     }
 
     public Timestamp getOrderDateTime() {
